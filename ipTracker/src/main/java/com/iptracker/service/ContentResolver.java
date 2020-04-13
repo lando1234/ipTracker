@@ -2,14 +2,10 @@ package com.iptracker.service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.iptracker.Utils;
@@ -18,7 +14,6 @@ import com.iptracker.model.CurrencyRatio;
 import com.iptracker.model.IpInfo;
 import com.iptracker.model.IpRequest;
 import com.iptracker.model.IpResponse;
-import com.iptracker.model.StatisticsReport;
 
 @Component
 public class ContentResolver {
