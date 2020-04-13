@@ -2,14 +2,13 @@ package com.iptracker.service;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iptracker.model.Country;
-import com.iptracker.rest.RestConnector;
+import com.iptracker.rest.RestConnection;
 
 
 @Service
@@ -19,7 +18,7 @@ public class CountryService extends SnapshotService{
 	private Country buenosAires;
 
 	@Autowired
-	public CountryService(RestConnector restConnector) {
+	public CountryService(RestConnection restConnector) {
 		super(restConnector);
 	}
 

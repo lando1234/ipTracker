@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 
 import com.iptracker.model.IpRequest;
 import com.iptracker.model.IpResponse;
-import com.iptracker.rest.RestConnector;
+import com.iptracker.rest.RestConnection;
 
 @Component
 public class IpService {
 
-	private RestConnector restConnector;
+	private RestConnection restConnector;
 
 	private final Map<String,IpResponse> ipCache = new HashMap<>();
 
 	@Autowired
-	public IpService(RestConnector restConnector) {
+	public IpService(RestConnection restConnector) {
 		this.restConnector = restConnector;
 	}
 

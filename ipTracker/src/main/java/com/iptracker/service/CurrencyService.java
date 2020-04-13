@@ -1,9 +1,6 @@
 package com.iptracker.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +9,7 @@ import org.springframework.stereotype.Component;
 import com.iptracker.model.Currency;
 import com.iptracker.model.CurrencyRatio;
 import com.iptracker.model.CurrencyResponse;
-import com.iptracker.model.IpRequest;
-import com.iptracker.model.IpResponse;
-import com.iptracker.rest.RestConnector;
+import com.iptracker.rest.RestConnection;
 
 @Component
 public class CurrencyService extends SnapshotService{
@@ -24,7 +19,7 @@ public class CurrencyService extends SnapshotService{
 	private CurrencyResponse currencySnapshot;
 
 	@Autowired
-	public CurrencyService(RestConnector restConnector) {
+	public CurrencyService(RestConnection restConnector) {
 		super(restConnector);
 	}
 

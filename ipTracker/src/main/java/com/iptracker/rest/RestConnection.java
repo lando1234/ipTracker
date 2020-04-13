@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,15 +12,13 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iptracker.exception.RestConnectorException;
 
-import jdk.internal.org.objectweb.asm.TypeReference;
-
 @Service
-public class RestConnector {
+public class RestConnection {
 
 	private ObjectMapper objectMapper;
 
 	@Autowired
-	public RestConnector(ObjectMapper defaultObjectMapper) {
+	public RestConnection(ObjectMapper defaultObjectMapper) {
 		this.objectMapper = defaultObjectMapper;
 	}
 
