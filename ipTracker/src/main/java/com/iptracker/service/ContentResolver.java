@@ -3,6 +3,7 @@ package com.iptracker.service;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +32,27 @@ public class ContentResolver {
 		this.statisticsService = statisticsService;
 	}
 
-	public IpInfo getInfo(String ip){
+	public Optional<IpInfo> getInfo(String ip){
 		IpResponse ipServiceresponse = this.ipService.getIpCountry(new IpRequest(ip));
+		if( ipServiceresponse == null ){
+			return Optional.empty();
+		}
 		Country country = this.countryService.getCountryData(ipServiceresponse.getCountryCode());
+		if(country == null ){
+			return Optional.empty();
+		}
 		List<CurrencyRatio> currencyRatios = this.currencyService.getCurrencyRatios(country.getCurrencies());
 
 		this.statisticsService.addCountryToStatistics(country);
 
-		return IpInfo.builder()
+		return Optional.of(IpInfo.builder()
 					 .ip(ip)
 					 .countryName(country.parseName())
 					 .isoCode(country.getIsoCode())
 					 .distance(country.getParsedDistance())
 					 .times(country.getTimezones().stream().map(zone -> getDates(zone)).collect(Collectors.toList()))
 					 .currencies(currencyRatios)
-					 .build();
+					 .build());
 	}
 
 

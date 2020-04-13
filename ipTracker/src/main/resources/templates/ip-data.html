@@ -22,24 +22,29 @@
   <h1>ip tracker</h1>
   <a href="/home">Cargar nueva IP</a>
   <hr>
-  <label>IP: </label>
-  <span th:text="${ipInfo.ip}"></span> <br>
-  <label>Pa&iacute;s: </label>
-  <span th:text="${ipInfo.countryName}"></span><br>
-  <label>Codigo Iso:</label>
-  <span th:text="${ipInfo.isoCode}"></span><br>
-  <label> Horario/s: </label>
-  <ul style="margin: 0;list-style-type: none;" th:each="time: ${ipInfo.times}">
-    <li th:text="${time}"></li>
-  </ul>
-  <label>Moneda/s: </label>
-  <ul style="margin: 0;list-style-type: none;" th:each="cur: ${ipInfo.currencies}">
-    <li th:text="${cur}"></li>
-  </ul>
-  <label>Distancia a BS AS: </label>
-  <span th:text="${ipInfo.distance}"></span>
-  <hr>
-  <h2>Estadisticas</h2>
+  <span th:if="${ipInfo != null}">
+    <label>IP: </label>
+    <span th:text="${ipInfo.ip}"></span> <br>
+    <label>Pa&iacute;s: </label>
+    <span th:text="${ipInfo.countryName}"></span><br>
+    <label>Codigo Iso:</label>
+    <span th:text="${ipInfo.isoCode}"></span><br>
+    <label> Horario/s: </label>
+    <ul style="margin: 0;list-style-type: none;" th:each="time: ${ipInfo.times}">
+      <li th:text="${time}"></li>
+    </ul>
+    <label>Moneda/s: </label>
+    <ul style="margin: 0;list-style-type: none;" th:each="cur: ${ipInfo.currencies}">
+      <li th:text="${cur}"></li>
+    </ul>
+    <label>Distancia a BS AS: </label>
+    <span th:text="${ipInfo.distance}"></span>
+    <hr>
+    <h2>Estadisticas</h2>
+  </span>
+  <span th:if="${ipInfo == null}">
+    <h3>La ip no pertenece a ningún País</h3>
+  </span>
   <div class="statistics"></div>
   <script type="text/javascript">
 
@@ -55,15 +60,15 @@
               <th>Distancia</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Cercano a BS AS</td>
-              <td>${json.closestCountry?json.closestCountry.name: 'No hay data'}</td>
+         <tbody>
+                        <tr>
+              <td>Cecano a BS AS</td>
+              <td>${json.closestCountry?json.closestCountry.nativeName + ' ('+ json.closestCountry.name + ')': 'No hay data'}</td>
               <td>${json.closestCountry?json.closestCountry.parsedDistance: 'No hay data'}</td>
             </tr>
             <tr>
               <td>Lejano a BS AS</td>
-              <td>${json.farthestCountry?json.farthestCountry.name: 'No hay data'}</td>
+              <td>${json.farthestCountry?json.farthestCountry.nativeName + ' ('+ json.farthestCountry.name + ')': 'No hay data'}</td>
               <td>${json.farthestCountry?json.farthestCountry.parsedDistance: 'No hay data'}</td>
             </tr>
           </tbody>

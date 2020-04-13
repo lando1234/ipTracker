@@ -46,12 +46,12 @@
           <tbody>
             <tr>
               <td>Cercano a BS AS</td>
-              <td>${json.closestCountry?json.closestCountry.name: 'No hay data'}</td>
+              <td>${json.closestCountry?json.closestCountry.nativeName + ' ('+ json.closestCountry.name + ')': 'No hay data'}</td>
               <td>${json.closestCountry?json.closestCountry.parsedDistance: 'No hay data'}</td>
             </tr>
             <tr>
               <td>Lejano a BS AS</td>
-              <td>${json.farthestCountry?json.farthestCountry.name: 'No hay data'}</td>
+              <td>${json.farthestCountry?json.farthestCountry.nativeName + ' ('+ json.farthestCountry.name + ')': 'No hay data'}</td>
               <td>${json.farthestCountry?json.farthestCountry.parsedDistance: 'No hay data'}</td>
             </tr>
           </tbody>

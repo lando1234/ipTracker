@@ -25,8 +25,11 @@ public class IpService {
 	public IpResponse getIpCountry(IpRequest request ){
 		IpResponse response = this.ipCache.get(request.getIp());
 		if(response == null ){
-			response = this.restConnector.get(request.getUrl(), IpResponse.class);
-			this.ipCache.put(request.getIp(),response);
+			IpResponse serviceResponse = this.restConnector.get(request.getUrl(), IpResponse.class);
+			if(!serviceResponse.getCountryCode().isEmpty()){
+				this.ipCache.put(request.getIp(),response);
+				response = serviceResponse;
+			}
 		}
 
 		return response;

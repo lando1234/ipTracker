@@ -31,7 +31,7 @@ public class HomeController {
 	@PostMapping
 	public ModelAndView postIp(@RequestParam(value = "ip") String ip){
 		ModelAndView modelAndView = new ModelAndView("ip-data");
-		modelAndView.addObject(this.contentResolver.getInfo(ip));
+		this.contentResolver.getInfo(ip).ifPresent(ipInfo -> modelAndView.addObject(ipInfo));
 		return modelAndView;
 	}
 }
